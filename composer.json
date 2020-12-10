@@ -1,0 +1,51 @@
+{
+    "name": "vedatbozkurt/sms",
+    "description": "Laravel Sms Management Package based on multi sms providers",
+    "keywords": [
+        "vedatbozkurt",
+        "sms"
+    ],
+    "homepage": "https://github.com/vedatbozkurt/sms",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Vedat Bozkurt",
+            "email": "info@wedat.org",
+            "role": "Developer"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vedatbozkurt\\Sms\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Vedatbozkurt\\Sms\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vedatbozkurt\\Sms\\SmsServiceProvider"
+            ],
+            "aliases": {
+                "Sms": "Vedatbozkurt\\Sms\\SmsFacade"
+            }
+        }
+    }
+}
