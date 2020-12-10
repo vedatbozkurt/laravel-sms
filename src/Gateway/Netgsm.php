@@ -18,55 +18,31 @@ class Netgsm implements Gateway
     public function sendSms($phoneNumbers=null, $message=null)
     {
         $numbers = implode(',', $phoneNumbers);
-        $url = config('sms.url')."/sms/send/get/?usercode=".config('sms.usercode')."&password=".config('sms.password')."&gsmno=".$numbers."&message=".$message."&msgheader=".config('sms.header')."&dil=".config('sms.language');
-        $response = Http::get($url);
-        if ($response->getStatusCode() == 200) {
-            $data = $response->body();
-            
-            SmsException::checkError($data);
-
-            $bulkId=explode(' ', $data);
-            return $bulkId[1];
-        } else {
-            throw new ResponseException($response->getReasonPhrase());
-        }
+        $req = config('sms.url')."/sms/send/get/?usercode=".config('sms.usercode')."&password=".config('sms.password')."&gsmno=".$numbers."&message=".$message."&msgheader=".config('sms.header')."&dil=".config('sms.language');
+        return $this->setRequest($req);
     }
 
     public function getBalance()
     {
-        $url = config('sms.url')."balance/list/get/?usercode=".config('sms.usercode')."&password=".config('sms.password');
-        $response = Http::get($url);
-        if ($response->getStatusCode() == 200) {
-            $data = $response->body();
-            
-            SmsException::checkError($data);
-
-            $bulkId=explode(' ', $data);
-            return $bulkId[1];
-        } else {
-            throw new ResponseException($response->getReasonPhrase());
-        }
+        $req = config('sms.url')."balance/list/get/?usercode=".config('sms.usercode')."&password=".config('sms.password');
+        return $this->setRequest($req);
     }
 
     public function getHeader()
     {
-        $url = config('sms.url')."sms/header/?usercode=".config('sms.usercode')."&password=".config('sms.password');
-        $response = Http::get($url);
-        if ($response->getStatusCode() == 200) {
-            $data = $response->body();
-
-            SmsException::checkError($data);
-
-            return $data;
-        } else {
-            throw new ResponseException($response->getReasonPhrase());
-        }
+        $req = config('sms.url')."sms/header/?usercode=".config('sms.usercode')."&password=".config('sms.password');
+        return $this->setRequest($req);
     }
 
     public function getPackage()
     {
-        $url = config('sms.url')."balance/list/get/?usercode=".config('sms.usercode')."&password=".config('sms.password')."&tip=1";
-        $response = Http::get($url);
+        $req = config('sms.url')."balance/list/get/?usercode=".config('sms.usercode')."&password=".config('sms.password')."&tip=1";
+        return $this->setRequest($req);
+    }
+
+    public function setRequest($req)
+    {
+        $response = Http::get($req);
         if ($response->getStatusCode() == 200) {
             $data = $response->body();
 

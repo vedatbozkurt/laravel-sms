@@ -26,7 +26,7 @@ class Sms
         return $data;
     }
 
-    public function getHeaders()
+    public function getHeader()
     {
         $data = $this->sms_driver->getHeader();
         return $data;

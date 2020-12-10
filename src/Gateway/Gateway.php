@@ -15,4 +15,5 @@ interface Gateway
     public function getBalance();
     public function getHeader();
     public function getPackage();
+    public function setRequest($req);
 }
