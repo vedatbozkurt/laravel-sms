@@ -4,10 +4,10 @@
  * @Email: info@wedat.org
  * @Date: 2020-12-10 19:02:31
  * @LastEditors: @vedatbozkurt
- * @LastEditTime: 2020-12-10 19:13:05
+ * @LastEditTime: 2020-12-10 19:41:56
  */
 
-namespace Vedatbozkurt\Sms;
+namespace Vedatbozkurt\Sms\Gateway;
 
 interface Gateway
 {

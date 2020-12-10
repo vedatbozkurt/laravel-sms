@@ -7,7 +7,7 @@
  * @LastEditTime: 2020-12-10 14:25:10
  */
 
-namespace VedatBozkurt\Netgsm\Exception;
+namespace VedatBozkurt\Sms\Exception;
 
 class ParameterException extends \Exception
 {

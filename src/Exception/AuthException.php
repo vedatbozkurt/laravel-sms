@@ -4,10 +4,10 @@
  * @Email: info@wedat.org
  * @Date: 2020-12-10 14:24:24
  * @LastEditors: @vedatbozkurt
- * @LastEditTime: 2020-12-10 14:34:53
+ * @LastEditTime: 2020-12-10 19:22:04
  */
 
-namespace VedatBozkurt\Netgsm\Exception;
+namespace VedatBozkurt\Sms\Exception;
 
 class AuthException extends \Exception
 {

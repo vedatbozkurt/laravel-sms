@@ -7,7 +7,7 @@
  * @LastEditTime: 2020-12-10 15:02:31
  */
 
-namespace VedatBozkurt\Netgsm\Exception;
+namespace VedatBozkurt\Sms\Exception;
 
 class TimeoutException extends \Exception
 {
