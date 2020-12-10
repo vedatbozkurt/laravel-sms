@@ -4,14 +4,14 @@
  * @Email: info@wedat.org
  * @Date: 2020-12-10 18:52:47
  * @LastEditors: @vedatbozkurt
- * @LastEditTime: 2020-12-10 19:51:28
+ * @LastEditTime: 2020-12-10 20:04:57
  */
 
 namespace Vedatbozkurt\Sms;
 
 class Sms
 {
-    public $sms_driver;
+    protected $sms_driver;
 
     public function __construct()
     {
@@ -38,7 +38,7 @@ class Sms
         return $data;
     }
 
-    public function sendSms($phoneNumbers, $message)
+    public function sendSms($phoneNumbers=null, $message=null)
     {
         $data = $this->sms_driver->sendSms($phoneNumbers, $message);
         return $data;

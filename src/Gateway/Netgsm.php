@@ -4,7 +4,7 @@
  * @Email: info@wedat.org
  * @Date: 2020-12-10 13:18:58
  * @LastEditors: @vedatbozkurt
- * @LastEditTime: 2020-12-10 19:42:14
+ * @LastEditTime: 2020-12-10 20:06:12
  */
 
 namespace Vedatbozkurt\Sms\Gateway;
@@ -15,7 +15,7 @@ use Vedatbozkurt\Sms\Exception\SmsException;
 
 class Netgsm implements Gateway
 {
-    public function sendSms($phoneNumbers, $message)
+    public function sendSms($phoneNumbers=null, $message=null)
     {
         $numbers = implode(',', $phoneNumbers);
         $url = config('sms.url')."/sms/send/get/?usercode=".config('sms.usercode')."&password=".config('sms.password')."&gsmno=".$numbers."&message=".$message."&msgheader=".config('sms.header')."&dil=".config('sms.language');
