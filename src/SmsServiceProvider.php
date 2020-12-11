@@ -1,4 +1,11 @@
 <?php
+/*
+ * @Author: @vedatbozkurt
+ * @Email: info@wedat.org
+ * @Date: 2020-12-11 21:10:37
+ * @LastEditors: @vedatbozkurt
+ * @LastEditTime: 2020-12-11 21:11:01
+ */
 
 namespace Vedatbozkurt\Sms;
 
@@ -14,7 +21,7 @@ class SmsServiceProvider extends ServiceProvider
         /*
          * Optional methods to load your package assets
          */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'sms');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'sms');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'sms');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
@@ -35,9 +42,9 @@ class SmsServiceProvider extends ServiceProvider
             ], 'assets');*/
 
             // Publishing the translation files.
-            /*$this->publishes([
+            $this->publishes([
                 __DIR__.'/../resources/lang' => resource_path('lang/vendor/sms'),
-            ], 'lang');*/
+            ], 'lang');
 
             // Registering package commands.
             // $this->commands([]);
