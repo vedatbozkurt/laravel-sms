@@ -1,11 +1,12 @@
-# Very short description of the package
-
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/vedatbozkurt/sms.svg?style=flat-square)](https://packagist.org/packages/vedatbozkurt/sms)
-[![Build Status](https://img.shields.io/travis/vedatbozkurt/sms/master.svg?style=flat-square)](https://travis-ci.org/vedatbozkurt/sms)
-[![Quality Score](https://img.shields.io/scrutinizer/g/vedatbozkurt/sms.svg?style=flat-square)](https://scrutinizer-ci.com/g/vedatbozkurt/sms)
 [![Total Downloads](https://img.shields.io/packagist/dt/vedatbozkurt/sms.svg?style=flat-square)](https://packagist.org/packages/vedatbozkurt/sms)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+# Laravel SMS Gateway
+
+Laravel Sms Management Package based on multi sms providers.
+
+## Supported Gateways
+
+[NetGsm](https://www.netgsm.com.tr/dokuman/#api-dokümanı)
 
 ## Installation
 
@@ -15,39 +16,134 @@ You can install the package via composer:
 composer require vedatbozkurt/sms
 ```
 
+Edit .env file:
+
+```bash
+SMS_GATEWAY=Netgsm
+
+NETGSM_URL=provider_sms_api_url
+NETGSM_USERCODE=your_usercode
+NETGSM_PASSWORD=your_password
+NETGSM_HEADER=your_header
+NETGSM_LANGUAGE=sms_lang
+```
+
+
 ## Usage
 
-``` php
-// Usage description here
+```php
+use Vedatbozkurt\Sms\SmsFacade as Sms;
+
+Route::get('/test-sms', function () {
+    $sms = Sms::getHeader();  
+    dd($sms);
+});
+
 ```
 
-### Testing
+#### Available Requests and Response
 
-``` bash
-composer test
+
+```php
+getPackage();
+/* Response (paket bilgisi <BR> ile ayrıştırılmıştır.)
+1000 | Adet Flash Sms | <BR>953 | Adet OTP Sms | <BR>643 | Adet | SMS<BR>
+*/
 ```
 
-### Changelog
+```php
+getHeader();
+/*
+   850346xxxx<br>MesajBaslik1<br>
+*/
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+```
+
+```php
+getBalance();
+/*
+Hesabınızda bulunan 2.7 TL kredi için servisten dönen yanıt:
+ 00 2,7
+*/
+
+```
+
+```php
+sendSms($phoneNumbers=null, $message=null);
+
+// 00 347022009 
+// 00: No error
+// 347022009: Sms bulk id 
+```
+
+```php
+getReport($bulkId=null);
+ // 53545	0505550000000	0	10	1	01.05.2014 22:24:00	102
+    
+    /*
+    53545 -> GörevID
+    0505550000000 -> Cep Telefon
+    0 -> Mesaj Durumu
+    10 -> Operatör Kodu
+    1 -> Mesaj Boyu
+    01.05.2014 22:24:00 -> İletim Tarihi
+    102 -> Dönen Hata Kodu
+
+    Servisten Dönen Yanıt
+        Parametre = durum;
+        Kod	Anlamı
+        0	İletilmeyi bekleyenler
+        1	İletilmiş olanlar
+        2	Zaman aşımına uğramış olanlar
+        3	Hatalı veya kısıtlı numara
+        4	Operatöre gönderilemedi
+        11	Operatör tarafından kabul edilmemiş olanlar
+        12	Gönderim hatası olanlar
+        13	Mükerrer olanlar
+        100	Tüm mesaj durumları
+        103	Başarısız Görev (Bu görevin tamamı başarısız olmuştur.)
+
+        Parametre = operator;
+        Kod	Anlamı
+        10	Vodafone
+        20	Avea
+        30	Turkcell
+        40	Netgsm
+        50	TTNET Mobil
+        60	Türktelekom
+        70	Diğer Operatörler
+
+        Hata Kodu Açıklamaları;
+        0	Hata Yok
+        101	Mesaj Kutusu Dolu
+        102	Kapalı yada Kapsama Dışında
+        103	Meşgul
+        104	Hat Aktif Değil
+        105	Hatalı Numara
+        106	SMS red, Karaliste
+        111	Zaman Aşımı
+        112	Mobil Cihaz Sms Gönderimine Kapalı
+        113	Mobil Cihaz Desteklemiyor
+        114	Yönlendirme Başarısız
+        115	Çağrı Yasaklandı
+        116	Tanımlanamayan Abone
+        117	Yasadışı Abone
+        119	Sistemsel Hata
+    */
+
+```
+
+
 
 ## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Please make sure to update tests as appropriate.
 
-### Security
 
-If you discover any security related issues, please email info@wedat.org instead of using the issue tracker.
+## Security Vulnerabilities
 
-## Credits
-
-- [Vedat Bozkurt](https://github.com/vedatbozkurt)
-- [All Contributors](../../contributors)
+If you would like to report an error, ask a question or offer a suggestion, please e-mail me at [info@wedat.org](info@wedat.org). All security vulnerabilities will be promptly addressed.
 
 ## License
-
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).# sms
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
