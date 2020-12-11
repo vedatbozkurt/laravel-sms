@@ -4,7 +4,7 @@
  * @Email: info@wedat.org
  * @Date: 2020-12-10 18:52:47
  * @LastEditors: @vedatbozkurt
- * @LastEditTime: 2020-12-10 20:04:57
+ * @LastEditTime: 2020-12-11 20:50:51
  */
 
 namespace Vedatbozkurt\Sms;
@@ -26,7 +26,7 @@ class Sms
         return $data;
     }
 
-    public function getHeaders()
+    public function getHeader()
     {
         $data = $this->sms_driver->getHeader();
         return $data;
