@@ -4,7 +4,7 @@
  * @Email: info@wedat.org
  * @Date: 2020-12-10 18:52:47
  * @LastEditors: @vedatbozkurt
- * @LastEditTime: 2020-12-11 20:50:51
+ * @LastEditTime: 2020-12-11 21:08:33
  */
 
 namespace Vedatbozkurt\Sms;
@@ -41,6 +41,12 @@ class Sms
     public function sendSms($phoneNumbers=null, $message=null)
     {
         $data = $this->sms_driver->sendSms($phoneNumbers, $message);
+        return $data;
+    }
+    
+    public function getReport($bulkId=null)
+    {
+        $data = $this->sms_driver->getReport($bulkId);
         return $data;
     }
 }

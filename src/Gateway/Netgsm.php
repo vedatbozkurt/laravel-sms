@@ -4,7 +4,7 @@
  * @Email: info@wedat.org
  * @Date: 2020-12-10 13:18:58
  * @LastEditors: @vedatbozkurt
- * @LastEditTime: 2020-12-11 20:54:16
+ * @LastEditTime: 2020-12-11 21:09:02
  */
 
 namespace Vedatbozkurt\Sms\Gateway;
@@ -37,6 +37,12 @@ class Netgsm implements Gateway
     public function getPackage()
     {
         $req = config('sms.url')."balance/list/get/?usercode=".config('sms.usercode')."&password=".config('sms.password')."&tip=1";
+        return $this->setRequest($req);
+    }
+
+    public function getReport($bulkId)
+    {
+        $req= "https://api.netgsm.com.tr/sms/report/?usercode=".config('sms.usercode')."&password=".config('sms.password')."&bulkid=".$bulkId."&type=0&status=100&version=2";
         return $this->setRequest($req);
     }
 
