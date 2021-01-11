@@ -15,6 +15,7 @@ class Sms
 
     public function __construct()
     {
+        // test
         $driver = config('sms.driver');
         $class = 'Vedatbozkurt\Sms\Gateway\\' . $driver;
         $this->sms_driver = new $class;
